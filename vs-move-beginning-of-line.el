@@ -1,7 +1,7 @@
 ;;(require 'vs-move-beginning-of-line)
 (defun is-reverse-point-whitespace-all ()
   "カーソルの位置の前には空白文字しかありません"
-  (looking-back "^[\t ]+" ))
+  (looking-back "^[\t ]+"))
 
 (defun vs-move-beginning-of-line ()
   "Visual StdioライクなC-a,通常はインデントに従いHomeへ,もう一度押すと本来のHome"

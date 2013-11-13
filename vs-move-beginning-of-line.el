@@ -1,4 +1,3 @@
-;;(require 'vs-move-beginning-of-line)
 (defun is-reverse-point-whitespace-all ()
   "カーソルの位置の前には空白文字しかありません"
   (looking-back "^[\t ]+"))

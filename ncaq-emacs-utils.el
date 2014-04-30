@@ -5,8 +5,8 @@
   "Visual StudioライクなC-a,通常はインデントに従いHomeへ,もう一度押すと本来のHome"
   (interactive)
   (if (bolp)
-      (move-beginning-of-line nil))
-  (back-to-indentation))
+      (back-to-indentation)
+  (move-beginning-of-line nil)))
 
 (defun smart-delete-whitespace-backward ()
   (interactive)

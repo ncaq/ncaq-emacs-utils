@@ -4,9 +4,12 @@
 (defun smart-move-beginning-of-line ()
   "Visual StudioライクなC-a,通常はインデントに従いHomeへ,もう一度押すと本来のHome"
   (interactive)
-  (if (or (bolp) (looking-back "[^ 　	]+"))
+  (if (looking-back "^[ 　	]+")
+      (move-beginning-of-line nil)
+    (let ((oldpoint (point)))
       (back-to-indentation)
-    (move-beginning-of-line nil)))
+      (if (eq oldpoint (point))
+          (move-beginning-of-line nil)))))
 
 (defun smart-delete-whitespace-backward ()
   (interactive)

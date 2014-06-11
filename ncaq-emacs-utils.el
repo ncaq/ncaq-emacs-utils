@@ -23,6 +23,14 @@
     (backward-delete-char-untabify 1)
     (delete-whitespace-backward)))
 
+(defun scroll-down-one ()
+  (interactive)
+  (scroll-down 1))
+
+(defun scroll-up-one ()
+  (interactive)
+  (scroll-up 1))
+
 (defun sort-lines-auto-mark-paragrah ()
   (interactive)
   (if (use-region-p)

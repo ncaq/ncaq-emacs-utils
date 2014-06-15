@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (fset 'newline-under [end return])
 (fset 'newline-upper [home return up])
 

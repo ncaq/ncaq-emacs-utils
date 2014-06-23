@@ -24,6 +24,17 @@
     (backward-delete-char-untabify 1)
     (delete-whitespace-backward)))
 
+(defun isearch-exit-previous ()
+  "通常isearchは終了するとき,マッチした文字列の末尾に移動するが,これは先頭に移動する."
+  (interactive)
+  (let ((found-string-length (length isearch-string))
+        (forward isearch-forward))
+    (progn
+      (isearch-exit)
+      (goto-char (if forward
+                     (-(point) found-string-length)
+                   (+(point) found-string-length))))))
+
 (defun scroll-down-one ()
   (interactive)
   (scroll-down 1))

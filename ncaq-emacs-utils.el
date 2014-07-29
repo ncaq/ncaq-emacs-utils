@@ -45,16 +45,18 @@
 
 (defun sort-lines-auto-mark-paragrah ()
   (interactive)
-  (if (use-region-p)
-      (sort-lines nil (region-beginning)(region-end))
-    (progn
-      (mark-paragraph)
-      (sort-lines nil (region-beginning)(region-end)))))
+  (save-excursion
+    (if (use-region-p)
+        (sort-lines nil (region-beginning)(region-end))
+      (progn
+        (mark-paragraph)
+        (sort-lines nil (region-beginning)(region-end))))))
 
 (defun sort-lines-whole-buffer ()
   (interactive)
-  (mark-whole-buffer)
-  (sort-lines nil (region-beginning)(region-end)))
+  (save-excursion
+    (mark-whole-buffer)
+    (sort-lines nil (region-beginning)(region-end))))
 
 (defun indent-whole-buffer ()
   (interactive)

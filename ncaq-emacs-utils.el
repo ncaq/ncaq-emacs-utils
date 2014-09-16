@@ -58,6 +58,11 @@
     (mark-whole-buffer)
     (sort-lines nil (region-beginning)(region-end))))
 
+(defun kill-ring-save-whole ()
+  (interactive)
+  (save-excursion
+    (kill-ring-save (buffer-end 0) (buffer-end 1))))
+
 (defun indent-whole-buffer ()
   (interactive)
   (save-excursion

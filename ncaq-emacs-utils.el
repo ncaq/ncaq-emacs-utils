@@ -88,10 +88,13 @@
   (interactive)
   (text-scale-set 0))
 
-(require'text-adjust)
-(defun text-adjust-selective ()
-  (interactive)
-  (text-adjust-hankaku-buffer)
-  (text-adjust-kutouten-buffer))
+(autoload 'text-adjust-selective "text-adjust")
+(eval-after-load 'text-adjust
+  '(progn
+    (defun text-adjust-selective ()
+      (interactive)
+      (text-adjust-hankaku-buffer)
+      (text-adjust-kutouten-buffer))
+    ))
 
 (provide 'ncaq-emacs-utils)

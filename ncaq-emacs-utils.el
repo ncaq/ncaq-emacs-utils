@@ -69,17 +69,6 @@
     (mark-whole-buffer)
     (indent-region (point-min)(point-max))))
 
-(defun indent-whole-buffer-and-brackets ()
-  "並括弧を揃える(いい加減)"
-  (interactive)
-  (save-excursion
-    (while (re-search-forward ")\\W*{" nil t)
-      (replace-match ")\n{"))
-    (while (re-search-forward "=\\W*{" nil t)
-      (replace-match "=\n{"))
-    (indent-whole-buffer)
-    ))
-
 (defun kill-all-buffers ()
   (interactive)
   (mapc 'kill-buffer (buffer-list)))

@@ -1,6 +1,11 @@
 ;; -*- lexical-binding: t -*-
+
 (fset 'newline-under [end return])
 (fset 'newline-upper [home return up])
+
+(defun quoted-newline ()
+  (interactive)
+  (insert "\n"))
 
 (defun smart-move-beginning-of-line ()
   "Visual StudioライクなC-a,通常はインデントに従いHomeへ,もう一度押すと本来のHome"

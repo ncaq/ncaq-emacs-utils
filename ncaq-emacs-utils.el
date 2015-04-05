@@ -40,13 +40,11 @@
                      (-(point) found-string-length)
                    (+(point) found-string-length))))))
 
-(defun scroll-down-one ()
+(defun indent-whole-buffer ()
   (interactive)
-  (scroll-down 1))
-
-(defun scroll-up-one ()
-  (interactive)
-  (scroll-up 1))
+  (save-excursion
+    (mark-whole-buffer)
+    (indent-region (point-min)(point-max))))
 
 (defun sort-lines-auto-mark-paragrah ()
   (interactive)
@@ -68,11 +66,13 @@
   (save-excursion
     (kill-ring-save (buffer-end 0) (buffer-end 1))))
 
-(defun indent-whole-buffer ()
+(defun scroll-down-one ()
   (interactive)
-  (save-excursion
-    (mark-whole-buffer)
-    (indent-region (point-min)(point-max))))
+  (scroll-down 1))
+
+(defun scroll-up-one ()
+  (interactive)
+  (scroll-up 1))
 
 (defun kill-all-buffers ()
   (interactive)

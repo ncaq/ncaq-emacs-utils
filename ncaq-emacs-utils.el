@@ -61,6 +61,10 @@
     (mark-whole-buffer)
     (sort-lines nil (region-beginning)(region-end))))
 
+(defun align-space (beg end)
+  (interactive (list (region-beginning) (region-end)))
+  (align-regexp beg end "\\(\\s-*\\) " 1 0 t))
+
 (defun kill-ring-save-whole ()
   (interactive)
   (save-excursion

@@ -8,14 +8,11 @@
   (insert "\n"))
 
 (defun smart-move-beginning-of-line ()
-  "Visual StudioライクなC-a,通常はインデントに従いHomeへ,もう一度押すと本来のHome"
+  "Visual StudioライクなC-a,通常はインデントに従い,後ろが空白のみなら先頭"
   (interactive)
-  (if (looking-back "^[ 　	]+")
+  (if (looking-back "^[ 　\t]+")
       (move-beginning-of-line nil)
-    (let ((oldpoint (point)))
-      (back-to-indentation)
-      (if (eq oldpoint (point))
-          (move-beginning-of-line nil)))))
+    (back-to-indentation)))
 
 (defun smart-delete-whitespace-backward ()
   (interactive)

@@ -16,15 +16,17 @@
 
 (defun smart-delete-whitespace-backward ()
   (interactive)
-  (if (bolp)
-      (backward-delete-char-untabify 1)
-    (delete-whitespace-backward)))
+  (if (looking-back "\n")
+      (delete-char -1)
+    (when (looking-back "[ 　\t]+" nil t)
+      (replace-match ""))))
 
-(defun delete-whitespace-backward ()
+(defun smart-delete-whitespace-forward ()
   (interactive)
-  (when (looking-back "[ 　	]" 0)
-    (backward-delete-char-untabify 1)
-    (delete-whitespace-backward)))
+  (if (looking-at "\n")
+      (delete-char 1)
+    (when (looking-at "[ 　\t]+")
+      (replace-match ""))))
 
 (defun isearch-exit-previous ()
   "通常isearchは終了するとき,マッチした文字列の末尾に移動するが,これは先頭に移動する."

@@ -64,6 +64,24 @@
   (interactive (list (region-beginning) (region-end)))
   (align-regexp beg end "\\(\\s-*\\) " 1 0 t))
 
+(defun kill-region-or-word-at-point ()
+  (interactive)
+  (apply 'kill-region (region-or-thing-at-point 'word)))
+
+(defun kill-region-or-sexp-at-point ()
+  (interactive)
+  (apply 'kill-region (region-or-thing-at-point 'sexp)))
+
+(defun kill-ring-save-region-or-word-at-point ()
+  (interactive)
+  (apply 'kill-ring-save (region-or-thing-at-point 'word)))
+
+(defun region-or-thing-at-point (thing)
+  (if (use-region-p)
+      (list (region-beginning) (region-end))
+    (let ((b (bounds-of-thing-at-point thing)))
+      (list (car b) (cdr b)))))
+
 (defun kill-ring-save-whole ()
   (interactive)
   (save-excursion

@@ -103,10 +103,9 @@
   (interactive)
   (text-scale-set 0))
 
-(defun other-or-split-window (COUNT &optional ALL-FRAMES)
+(defun other-window-fallback-split (COUNT &optional ALL-FRAMES)
   (interactive "p")
-  (if (one-window-p)
-      (split-window-dwim))
+  (when (one-window-p) (split-window-dwim))
   (other-window COUNT ALL-FRAMES))
 
 (defun other-window-backward ()

@@ -103,4 +103,23 @@
   (interactive)
   (text-scale-set 0))
 
+(defun other-or-split-window (COUNT &optional ALL-FRAMES)
+  (interactive "p")
+  (if (one-window-p)
+      (split-window-dwim))
+  (other-window COUNT ALL-FRAMES))
+
+(defun other-window-backward ()
+  (interactive)
+  (other-window -1))
+
+(defun split-window-dwim ()
+  (interactive)
+  (split-window nil nil (suggest-window-locate)))
+
+(defun suggest-window-locate ()
+  (if (< (window-pixel-width) (window-pixel-height))
+      'below
+    'right))
+
 (provide 'ncaq-emacs-utils)

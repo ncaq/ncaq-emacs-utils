@@ -116,6 +116,11 @@
   (interactive)
   (split-window nil nil (suggest-window-locate)))
 
+(defun split-window-dwim-and-other ()
+  (interactive)
+  (split-window nil nil (suggest-window-locate))
+  (other-window 1))
+
 (defun suggest-window-locate ()
   (if (< (window-pixel-width) (window-pixel-height))
       'below

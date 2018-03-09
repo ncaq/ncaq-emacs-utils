@@ -10,13 +10,13 @@
 (defun smart-move-beginning-of-line ()
   "Visual StudioライクなC-a,通常はインデントに従い,後ろが空白のみなら先頭"
   (interactive)
-  (if (looking-back "^[ 　\t]+")
+  (if (looking-back "^[ 　\t]+" -1000)
       (move-beginning-of-line nil)
     (back-to-indentation)))
 
 (defun smart-delete-whitespace-backward ()
   (interactive)
-  (if (looking-back "\n")
+  (if (looking-back "\n" -1000)
       (delete-char -1)
     (when (looking-back "[ 　\t]+" nil t)
       (replace-match ""))))
@@ -36,29 +36,27 @@
     (progn
       (isearch-exit)
       (goto-char (if forward
-                     (-(point) found-string-length)
-                   (+(point) found-string-length))))))
+                     (- (point) found-string-length)
+                   (+ (point) found-string-length))))))
 
 (defun indent-whole-buffer ()
   (interactive)
   (save-excursion
-    (mark-whole-buffer)
-    (indent-region (point-min)(point-max))))
+    (indent-region (point-min) (point-max))))
 
 (defun sort-lines-auto-mark-paragrah ()
   (interactive)
   (save-excursion
     (if (use-region-p)
-        (sort-lines nil (region-beginning)(region-end))
+        (sort-lines nil (region-beginning) (region-end))
       (progn
         (mark-paragraph)
-        (sort-lines nil (region-beginning)(region-end))))))
+        (sort-lines nil (region-beginning) (region-end))))))
 
 (defun sort-lines-whole-buffer ()
   (interactive)
   (save-excursion
-    (mark-whole-buffer)
-    (sort-lines nil (region-beginning)(region-end))))
+    (sort-lines nil (point-min) (point-max))))
 
 (defun align-space (beg end)
   (interactive (list (region-beginning) (region-end)))

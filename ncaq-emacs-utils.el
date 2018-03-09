@@ -85,10 +85,6 @@
   (save-excursion
     (kill-ring-save (buffer-end 0) (buffer-end 1))))
 
-(defun insert-register-@ ()
-  (interactive)
-  (insert-register ?@))
-
 (defun copy-to-register-@ (start end &optional delete-flag region)
   (interactive
    (list
@@ -97,6 +93,11 @@
     current-prefix-arg
     t))
   (copy-to-register ?@ start end delete-flag region))
+
+(defun yank-register-@ ()
+  (interactive)
+  (insert-register ?@)
+  (goto-char (prog1 (mark t) (set-marker (mark-marker) (point) (current-buffer)))))
 
 (defun scroll-down-one ()
   (interactive)

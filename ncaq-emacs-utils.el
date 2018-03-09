@@ -87,6 +87,19 @@
   (save-excursion
     (kill-ring-save (buffer-end 0) (buffer-end 1))))
 
+(defun insert-register-@ ()
+  (interactive)
+  (insert-register ?@))
+
+(defun copy-to-register-@ (start end &optional delete-flag region)
+  (interactive
+   (list
+    (region-beginning)
+    (region-end)
+    current-prefix-arg
+    t))
+  (copy-to-register ?@ start end delete-flag region))
+
 (defun scroll-down-one ()
   (interactive)
   (scroll-down 1))

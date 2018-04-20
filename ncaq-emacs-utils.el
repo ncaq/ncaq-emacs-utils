@@ -138,4 +138,9 @@
       'below
     'right))
 
+(defun revert-buffer-safe-confirm ()
+  "更新されていないファイルなら確認をしないrevert-buffer"
+  (interactive)
+  (revert-buffer nil (not (buffer-modified-p))))
+
 (provide 'ncaq-emacs-utils)

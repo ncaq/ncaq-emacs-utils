@@ -74,6 +74,10 @@
   (interactive)
   (apply 'kill-ring-save (region-or-thing-at-point 'word)))
 
+(defun copy-whole-line ()
+  (interactive)
+  (apply 'kill-ring-save (region-or-thing-at-point 'line)))
+
 (defun region-or-thing-at-point (thing)
   (if (use-region-p)
       (list (region-beginning) (region-end))

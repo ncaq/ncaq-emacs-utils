@@ -44,16 +44,22 @@
   (save-excursion
     (indent-region (point-min) (point-max))))
 
-(defun sort-lines-auto-mark-paragrah ()
+(defun sort-dwim ()
+  "1行選択している時は単語のソート,選択してない時はパラグラフの行ソート,選択している時はその範囲の行ソート"
   (interactive)
   (save-excursion
-    (if (use-region-p)
-        (sort-lines nil (region-beginning) (region-end))
-      (progn
-        (mark-paragraph)
-        (sort-lines nil (region-beginning) (region-end))))))
+    (if (and (use-region-p)
+             (eq (line-number-at-pos (region-beginning)) (line-number-at-pos (region-end))))
+        (progn
+          (kill-region (region-beginning) (region-end))
+          (let ((line (car kill-ring)))
+            (setq kill-ring (cdr kill-ring))
+            (insert (string-join (sort (split-string line) (lambda (a b) (string< a b))) " "))))
+      (progn (unless (use-region-p) (mark-paragraph))
+             (sort-lines nil (region-beginning) (region-end))))))
 
 (defun sort-lines-whole-buffer ()
+  "バッファ全体をソートします"
   (interactive)
   (save-excursion
     (sort-lines nil (point-min) (point-max))))

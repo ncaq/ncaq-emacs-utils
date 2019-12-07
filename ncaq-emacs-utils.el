@@ -121,6 +121,19 @@
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
 
+(defun kill-file-or-dired-buffers ()
+  (interactive)
+  (mapc 'kill-buffer
+        (remove-if-not
+         (lambda (buffer)
+           (or
+            (buffer-file-name buffer)
+            (buffer-dired-p buffer)))
+         (buffer-list))))
+
+(defun buffer-dired-p (buffer)
+  (eq (buffer-local-value 'major-mode buffer) 'dired-mode))
+
 (defun text-scale-reset ()
   (interactive)
   (text-scale-set 0))

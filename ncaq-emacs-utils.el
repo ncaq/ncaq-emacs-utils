@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
+(require 'cl)
+
 (fset 'newline-under [end return])
 (fset 'newline-upper [home return up])
 

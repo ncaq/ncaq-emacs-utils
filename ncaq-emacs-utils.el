@@ -83,6 +83,10 @@
   (interactive)
   (apply 'kill-ring-save (region-or-thing-at-point 'word)))
 
+(defun kill-ring-save-region-or-sexp-at-point ()
+  (interactive)
+  (apply 'kill-ring-save (region-or-thing-at-point 'sexp)))
+
 (defun copy-whole-line ()
   (interactive)
   (apply 'kill-ring-save (region-or-thing-at-point 'line)))

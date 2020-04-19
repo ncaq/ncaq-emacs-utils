@@ -97,11 +97,21 @@
     (let ((b (bounds-of-thing-at-point thing)))
       (list (car b) (cdr b)))))
 
-(defun mark-whole-sexp ()
-  "S式をマークします.
-mark-sexpとの違いは前方へも探索することです."
+(defun mark-whole-word ()
+  "単語をマークします."
   (interactive)
-  (pcase (bounds-of-thing-at-point 'sexp)
+  (mark-whole-thing 'word))
+
+(defun mark-whole-sexp ()
+  "S式をマークします."
+  (interactive)
+  (mark-whole-thing 'sexp))
+
+(defun mark-whole-thing (thing)
+  "mark-word, mark-sexp用.
+前方にも探索します."
+  (interactive)
+  (pcase (bounds-of-thing-at-point thing)
     (`(,a . ,d)
      (goto-char a)
      (set-mark d))))

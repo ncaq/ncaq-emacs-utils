@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
-(require 'cl)
+(require 'cl-lib)
+(require 'subr-x)
 
 (fset 'newline-under [end return])
 (fset 'newline-upper [home return up])
@@ -126,7 +127,7 @@
 (defun kill-file-or-dired-buffers ()
   (interactive)
   (mapc 'kill-buffer
-        (remove-if-not
+        (cl-remove-if-not
          (lambda (buffer)
            (or
             (buffer-file-name buffer)

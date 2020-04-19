@@ -97,6 +97,15 @@
     (let ((b (bounds-of-thing-at-point thing)))
       (list (car b) (cdr b)))))
 
+(defun mark-whole-sexp ()
+  "S式をマークします.
+mark-sexpとの違いは前方へも探索することです."
+  (interactive)
+  (pcase (bounds-of-thing-at-point 'sexp)
+    (`(,a . ,d)
+     (goto-char a)
+     (set-mark d))))
+
 (defun kill-ring-save-whole ()
   (interactive)
   (save-excursion

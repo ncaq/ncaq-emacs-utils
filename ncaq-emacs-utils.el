@@ -79,6 +79,10 @@
   (interactive)
   (apply 'kill-region (region-or-thing-at-point 'sexp)))
 
+(defun kill-region-or-symbol-at-point ()
+  (interactive)
+  (apply 'kill-region (region-or-thing-at-point 'symbol)))
+
 (defun kill-ring-save-region-or-word-at-point ()
   (interactive)
   (apply 'kill-ring-save (region-or-thing-at-point 'word)))
@@ -86,6 +90,10 @@
 (defun kill-ring-save-region-or-sexp-at-point ()
   (interactive)
   (apply 'kill-ring-save (region-or-thing-at-point 'sexp)))
+
+(defun kill-ring-save-region-or-symbol-at-point ()
+  (interactive)
+  (apply 'kill-ring-save (region-or-thing-at-point 'symbol)))
 
 (defun copy-whole-line ()
   (interactive)

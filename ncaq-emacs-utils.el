@@ -11,7 +11,7 @@
   (insert "\n"))
 
 (defun smart-move-beginning-of-line ()
-  "Visual StudioライクなC-a,通常はインデントに従い,後ろが空白のみなら先頭"
+  "Visual StudioライクなC-a, 通常はインデントに従い, 後ろが空白のみなら先頭"
   (interactive)
   (if (looking-back "^[ 　\t]+" -1000)
       (move-beginning-of-line nil)
@@ -32,7 +32,7 @@
       (replace-match ""))))
 
 (defun isearch-exit-previous ()
-  "通常isearchは終了するとき,マッチした文字列の末尾に移動するが,これは先頭に移動する."
+  "通常isearchは終了するとき, マッチした文字列の末尾に移動するが, これは先頭に移動する."
   (interactive)
   (let ((found-string-length (length isearch-string))
         (forward isearch-forward))
@@ -48,7 +48,7 @@
     (indent-region (point-min) (point-max))))
 
 (defun sort-dwim ()
-  "1行選択している時は単語のソート,選択してない時はパラグラフの行ソート,選択している時はその範囲の行ソート"
+  "1行選択している時は単語のソート, 選択してない時はパラグラフの行ソート, 選択している時はその範囲の行ソート"
   (interactive)
   (save-excursion
     (if (and (use-region-p)

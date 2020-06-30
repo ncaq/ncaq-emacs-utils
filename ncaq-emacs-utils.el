@@ -18,6 +18,7 @@
     (back-to-indentation)))
 
 (defun smart-delete-whitespace-backward ()
+  "スペースだけではなく段階的に改行も削除する."
   (interactive)
   (if (looking-back "\n" -1000)
       (delete-char -1)
@@ -25,11 +26,24 @@
       (replace-match ""))))
 
 (defun smart-delete-whitespace-forward ()
+  "スペースだけではなく段階的に改行も削除する."
   (interactive)
   (if (looking-at "\n")
       (delete-char 1)
     (when (looking-at "[ 　\t]+")
       (replace-match ""))))
+
+(defun delete-whitespace-backward ()
+  "前にある空白文字を全削除する."
+  (interactive)
+  (when (looking-back "[[:blank:]\n]+" nil t)
+    (replace-match "")))
+
+(defun delete-whitespace-forward ()
+  "後ろにある空白文字を全削除する."
+  (interactive)
+  (when (looking-at "[[:blank:]\n]+")
+    (replace-match "")))
 
 (defun isearch-exit-previous ()
   "通常isearchは終了するとき, マッチした文字列の末尾に移動するが, これは先頭に移動する."

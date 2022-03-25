@@ -83,10 +83,13 @@
   (save-excursion
     (sort-lines nil (point-min) (point-max))))
 
-(defun align-space (beg end)
-  "スペースを基準に整形します."
+(defun align-space (BEG END)
+  "Align by space.
+スペースを基準に整形します。
+始まりのスペース、つまりインデントのスペースは触りません。
+BEG and END mark the limits of the region."
   (interactive (list (region-beginning) (region-end)))
-  (align-regexp beg end "\\(\\s-*\\) " 1 0 t))
+  (align-regexp BEG END "[^^]\\(\\s-*\\) " 1 0 t))
 
 (defun kill-region-or-word-at-point ()
   "選択範囲か単語を切り取ります."

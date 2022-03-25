@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (require 'cl-lib)
+(require 's)
 (require 'subr-x)
 
 (fset 'newline-under [end return])
@@ -10,6 +11,16 @@
   "強制的に改行を入力."
   (interactive)
   (insert "\n"))
+
+(defun insert-iso-datetime ()
+  "Insert date and time of ISO 8601."
+  (interactive)
+  (insert (format-time-string "%Y-%m-%dT%H:%M:%S%:z" (current-time))))
+
+(defun insert-random-uuid ()
+  "Insert UUIDv4."
+  (interactive)
+  (insert (s-trim (shell-command-to-string "uuidgen"))))
 
 (defun smart-move-beginning-of-line ()
   "Visual Studioライクなmove-beginning-of-line, 通常はインデントに従い, 後ろが空白のみなら先頭."
@@ -241,5 +252,15 @@ BEG and END mark the limits of the region."
   "更新されていないファイルなら確認をしないrevert-buffer."
   (interactive)
   (revert-buffer nil (not (buffer-modified-p))))
+
+(defun revert-buffer-with-coding-system-utf-8-unix ()
+  "Revert buffer with utf-8-unix."
+  (interactive)
+  (revert-buffer-with-coding-system 'utf-8-unix))
+
+(defun revert-buffer-with-coding-system-japanese-cp932-dos ()
+  "Revert buffer with japanese-cp932-dos."
+  (interactive)
+  (revert-buffer-with-coding-system 'japanese-cp932-dos))
 
 (provide 'ncaq-emacs-utils)

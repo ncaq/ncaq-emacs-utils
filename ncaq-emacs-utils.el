@@ -186,12 +186,12 @@ BEG and END mark the limits of the region."
   (goto-char (prog1 (mark t) (set-marker (mark-marker) (point) (current-buffer)))))
 
 (defun scroll-down-one ()
-  "一行下にスクロールします."
+  "一行下にテキストをスクロールします."
   (interactive)
   (scroll-down 1))
 
 (defun scroll-up-one ()
-  "一行上にスクロールします."
+  "一行上にテキストをスクロールします."
   (interactive)
   (scroll-up 1))
 

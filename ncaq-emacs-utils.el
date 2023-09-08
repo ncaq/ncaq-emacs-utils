@@ -248,6 +248,14 @@ BEG and END mark the limits of the region."
       'below
     'right))
 
+(defun delete-other-windows-force (&optional window interactive)
+  "Runs `delete-other-windows'.
+Enable `ignore-window-parameters' at that time.
+This will force the window to close."
+  (interactive "i\np")
+  (let ((ignore-window-parameters t))
+    (delete-other-windows window interactive)))
+
 (defun revert-buffer-safe-confirm ()
   "更新されていないファイルなら確認をしないrevert-buffer."
   (interactive)
